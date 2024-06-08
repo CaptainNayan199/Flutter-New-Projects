@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Material(
+                today? Material(
                   elevation: 5.0,
                   borderRadius: BorderRadius.circular(20.0),
                   child: Container(
@@ -71,20 +71,92 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w800),
                     ),
                   ),
+                ): GestureDetector(
+                  onTap: () {
+                    today = true;
+                    tomorrow = false;
+                    next_week = false;
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Text(
+                    "Today",
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800),
+                  ),
                 ),
-                Text(
-                  "Tomorrow",
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800),
+                tomorrow? Material(
+                  elevation: 5.0,
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 150, 235, 221),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Text(
+                      "Tomorrow",
+                      style: TextStyle(
+                          fontSize: 17.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ): GestureDetector(
+                  onTap: () {
+                    today = false;
+                    tomorrow = true;
+                    next_week = false;
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Text(
+                    "Tomorrow",
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800),
+                  ),
                 ),
-                Text(
-                  "Next week",
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800),
+                next_week? Material(
+                  elevation: 5.0,
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 150, 235, 221),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Text(
+                      "Next Week",
+                      style: TextStyle(
+                          fontSize: 17.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ): GestureDetector(
+                  onTap: () {
+                    today = false;
+                    tomorrow = false;
+                    next_week = true;
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Text(
+                    "Next Week",
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800),
+                  ),
                 ),
               ],
             ),
