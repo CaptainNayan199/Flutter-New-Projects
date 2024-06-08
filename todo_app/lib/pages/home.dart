@@ -16,9 +16,13 @@ class _HomeState extends State<Home> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(gradient: LinearGradient(colors: [Color.fromARGB(255, 12, 75, 192), Color.fromARGB(255, 23, 207, 240), Color.fromARGB(255, 34, 236, 118)],begin: Alignment.topRight, end: Alignment.bottomLeft),),
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xFF4E65FF), Color(0xFF92EFFD), Color.fromARGB(255, 34, 236, 118)],begin: Alignment.topRight, end: Alignment.bottomLeft),),
         child: Column(children: [
-
+          Text("Hello\nNayan", style: TextStyle(
+              fontSize: 25.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+          ),)
         ],),
       ),
     );
