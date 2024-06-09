@@ -1,6 +1,5 @@
 // import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 // import "package:flutter/widgets.dart";
 
 class Home extends StatefulWidget {
@@ -13,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool today = true, tomorrow = false, next_week = false;
   bool suggest = false;
+  TextEditingController to_do_controller = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,11 +219,32 @@ class _HomeState extends State<Home> {
                         "Activity",
                         style: TextStyle(
                           color: Color(0xFF008080),
-                          fontWeight: FontWeight.w200,
+                          fontWeight: FontWeight.bold,
                           fontSize: 25.0,
                         ),
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text("Add activity"),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black38, width: 3.0),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: TextField(
+                      controller: to_do_controller,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "This is the hint text",
+                      ),
+                    )
                   ),
                 ],
               ),
