@@ -233,18 +233,25 @@ class _HomeState extends State<Home> {
                     height: 10.0,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black38, width: 3.0),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: TextField(
+                        controller: to_do_controller,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "This is the hint text",
+                        ),
+                      )),
+                  SizedBox(height: 20.0),
+                  Container(
+                    width: 100,
+                    padding: EdgeInsets.all(50),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black38, width: 3.0),
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: TextField(
-                      controller: to_do_controller,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "This is the hint text",
-                      ),
-                    )
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color(0xFF008080)),
+                    child: Text("Add your activity"),
                   ),
                 ],
               ),
