@@ -1,5 +1,8 @@
 // import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
+import "package:random_string/random_string.dart";
+import "package:todo_app/service/database.dart";
 // import "package:flutter/widgets.dart";
 
 class Home extends StatefulWidget {
@@ -212,7 +215,10 @@ class _HomeState extends State<Home> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.cancel, size: 16.0,),
+                        child: Icon(
+                          Icons.cancel,
+                          size: 16.0,
+                        ),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -245,23 +251,39 @@ class _HomeState extends State<Home> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "eg: buy vegetables",
-                          hintStyle: TextStyle(
-                            fontSize: 15.0
-                          ),
+                          hintStyle: TextStyle(fontSize: 15.0),
                         ),
                       )),
                   SizedBox(height: 20.0),
-                  Center(
-                    child: Container(
-                      width: 100,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF008080)),
-                      child: Center(
-                        child: Text(
-                          "Add",
-                          style: TextStyle(color: Colors.white),
+                  GestureDetector(
+                    onTap: () {
+                      String id = randomAlphaNumeric(10);
+                      Map<String, dynamic> userTodo = {
+                        "Work": to_do_controller.text,
+                        "Id": id
+                      };
+                      today
+                          ? DatabaseMethods().addTodayWork(userTodo, id)
+                          : tomorrow
+                              ? DatabaseMethods().addTomorrowWork(userTodo, id)
+                              : next_week
+                                  ? DatabaseMethods()
+                                      .addNextWeekWork(userTodo, id)
+                                  : null;
+                                  Navigator.pop(context);
+                    },
+                    child: Center(
+                      child: Container(
+                        width: 100,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFF008080)),
+                        child: Center(
+                          child: Text(
+                            "Add",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
