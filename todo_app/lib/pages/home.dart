@@ -212,17 +212,18 @@ class _HomeState extends State<Home> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.cancel),
+                        child: Icon(Icons.cancel, size: 16.0,),
                       ),
                       SizedBox(
-                        height: 50.0,
+                        height: 10.0,
+                        width: 5.0,
                       ),
                       Text(
                         "Activity",
                         style: TextStyle(
                           color: Color(0xFF008080),
                           fontWeight: FontWeight.bold,
-                          fontSize: 25.0,
+                          fontSize: 17.0,
                         ),
                       )
                     ],
@@ -230,7 +231,7 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Text("Add activity"),
+                  Text("Add your to-do activity"),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -243,14 +244,17 @@ class _HomeState extends State<Home> {
                         controller: to_do_controller,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "This is the hint text",
+                          hintText: "eg: buy vegetables",
+                          hintStyle: TextStyle(
+                            fontSize: 15.0
+                          ),
                         ),
                       )),
                   SizedBox(height: 20.0),
                   Center(
                     child: Container(
                       width: 100,
-                      padding: EdgeInsets.all(50),
+                      padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Color(0xFF008080)),
