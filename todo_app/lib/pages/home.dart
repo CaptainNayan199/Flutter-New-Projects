@@ -1,6 +1,5 @@
 // import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 import "package:random_string/random_string.dart";
 import "package:todo_app/service/database.dart";
 // import "package:flutter/widgets.dart";
@@ -270,7 +269,7 @@ class _HomeState extends State<Home> {
                                   ? DatabaseMethods()
                                       .addNextWeekWork(userTodo, id)
                                   : null;
-                                  Navigator.pop(context);
+                      Navigator.pop(context);
                     },
                     child: Center(
                       child: Container(
