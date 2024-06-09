@@ -17,7 +17,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          openBox();
+        },
         child: Icon(
           Icons.add,
           color: Color(0xFF4E65FF),
@@ -245,13 +247,20 @@ class _HomeState extends State<Home> {
                         ),
                       )),
                   SizedBox(height: 20.0),
-                  Container(
-                    width: 100,
-                    padding: EdgeInsets.all(50),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xFF008080)),
-                    child: Text("Add your activity"),
+                  Center(
+                    child: Container(
+                      width: 100,
+                      padding: EdgeInsets.all(50),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xFF008080)),
+                      child: Center(
+                        child: Text(
+                          "Add",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
