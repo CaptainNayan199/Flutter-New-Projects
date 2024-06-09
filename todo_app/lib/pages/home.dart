@@ -1,5 +1,6 @@
 // import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
 // import "package:flutter/widgets.dart";
 
 class Home extends StatefulWidget {
@@ -17,8 +18,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add, color: Color(0xFF4E65FF), size: 25.0,),
-
+        child: Icon(
+          Icons.add,
+          color: Color(0xFF4E65FF),
+          size: 25.0,
+        ),
       ),
       body: Container(
         padding: EdgeInsets.only(top: 50.0, left: 50.0),
@@ -191,4 +195,40 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Future openBox() => (showDialog(
+        context: context,
+        builder: (builder) => AlertDialog(
+          content: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.cancel),
+                      ),
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      Text(
+                        "Activity",
+                        style: TextStyle(
+                          color: Color(0xFF008080),
+                          fontWeight: FontWeight.w200,
+                          fontSize: 25.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ));
 }
