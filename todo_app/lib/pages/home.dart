@@ -219,7 +219,7 @@ class _HomeState extends State<Home> {
                         width: 5.0,
                       ),
                       Text(
-                        "Activity",
+                        "Add the work to-do",
                         style: TextStyle(
                           color: Color(0xFF008080),
                           fontWeight: FontWeight.bold,
@@ -231,7 +231,7 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Text("Add your to-do activity"),
+                  Text("Add text"),
                   SizedBox(
                     height: 10.0,
                   ),
