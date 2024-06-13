@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   bool today = true, tomorrow = false, NextWeek = false;
   bool suggest = false;
 
-  Stream? todoStream;
+  Stream<QuerySnapshot>? todoStream;
 
   getontheload() async {
     todoStream = await DatabaseMethods().getAllTheWork(today
@@ -27,69 +27,72 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    getontheload();
     super.initState();
+    getontheload();
   }
 
   Widget allWork() {
     return StreamBuilder(
       stream: todoStream,
-      builder: (context, AsyncSnapshot snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: snapshot.data.docs.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  DocumentSnapshot ds = snapshot.data.docs[index];
-                  return ListTile(
-                    leading: Checkbox(
-                      activeColor: const Color(0xFF279CFB),
-                      value: ds["Yes"],
-                      onChanged: (newValue) async {
-                        await DatabaseMethods().updateIfTricked(
-                          ds["Id"],
-                          today
-                              ? "Today"
-                              : tomorrow
-                                  ? "Tomorrow"
-                                  : "Next Week",
-                        );
-                        setState(() {});
-                      },
-                    ),
-                    title: Text(
-                      ds["Work"],
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete,
-                          color: Color(0xFF008080)), // Change the color here
-                      onPressed: () async {
-                        await DatabaseMethods().deleteWork(
-                          ds["Id"],
-                          today
-                              ? "Today"
-                              : tomorrow
-                                  ? "Tomorrow"
-                                  : "Next Week",
-                        );
-                      },
-                    ),
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        return ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: snapshot.data!.docs.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            DocumentSnapshot ds = snapshot.data!.docs[index];
+            return ListTile(
+              leading: Checkbox(
+                activeColor: const Color(0xFF279CFB),
+                value: ds["Yes"],
+                onChanged: (newValue) async {
+                  await DatabaseMethods().updateIfTricked(
+                    ds["Id"],
+                    today
+                        ? "Today"
+                        : tomorrow
+                            ? "Tomorrow"
+                            : "Next Week",
                   );
-                })
-            : Center(
-                child: SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircularProgressIndicator(),
+                  setState(() {});
+                },
+              ),
+              title: Text(
+                ds["Work"],
+                style: TextStyle(
+                  fontSize: 17.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
                 ),
-              );
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.delete, color: Color(0xFF008080)),
+                onPressed: () async {
+                  await DatabaseMethods().deleteWork(
+                    ds["Id"],
+                    today
+                        ? "Today"
+                        : tomorrow
+                            ? "Tomorrow"
+                            : "Next Week",
+                  );
+                  setState(() {}); // Ensure the UI updates after deletion
+                },
+              ),
+            );
+          },
+        );
       },
     );
   }
@@ -174,7 +177,6 @@ class _HomeState extends State<Home> {
                           tomorrow = false;
                           NextWeek = false;
                           await getontheload();
-                          setState(() {});
                         },
                         child: const Text(
                           "Today",
@@ -210,7 +212,6 @@ class _HomeState extends State<Home> {
                           tomorrow = true;
                           NextWeek = false;
                           await getontheload();
-                          setState(() {});
                         },
                         child: const Text(
                           "Tomorrow",
@@ -246,7 +247,6 @@ class _HomeState extends State<Home> {
                           tomorrow = false;
                           NextWeek = true;
                           await getontheload();
-                          setState(() {});
                         },
                         child: const Text(
                           "Next Week",
@@ -269,104 +269,104 @@ class _HomeState extends State<Home> {
   }
 
   Future openBox() => showDialog(
-    barrierColor: line,
-        context: context,
-        builder: (builder) => AlertDialog(
-          content: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    barrierColor: Colors.black54,
+    context: context,
+    builder: (builder) => AlertDialog(
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.cancel,
-                        size: 20.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 17.0,
-                      width: 5.0,
-                    ),
-                    const Text(
-                      "Add Your Work To-Do",
-                      style: TextStyle(
-                        color: Color(0xFF008080),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17.0,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                // const Text("Add text"),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black38, width: 3.0),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextField(
-                    controller: to_do_controller,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "eg: turn of the gas 🔥 ",
-                      hintStyle: TextStyle(fontSize: 15.0),
-                      contentPadding: EdgeInsets.fromLTRB(30, 0, 0, 0)
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
                 GestureDetector(
-                  onTap: () async {
-                    String id = randomAlphaNumeric(10);
-                    Map<String, dynamic> userTodo = {
-                      "Work": to_do_controller.text,
-                      "Id": id,
-                      "Yes": false,
-                    };
-                    if (today) {
-                      DatabaseMethods().addTodayWork(userTodo, id);
-                    } else if (tomorrow) {
-                      DatabaseMethods().addTomorrowWork(userTodo, id);
-                    } else if (NextWeek) {
-                      DatabaseMethods().addNextWeekWork(userTodo, id);
-                    } else {
-                      // do nothing
-                      // ignore: avoid_print
-                      print("Nothing is done here");
-                    }
-                    to_do_controller.clear(); // Clear the text field
-                    Navigator.pop(context); // Close the dialog
+                  onTap: () {
+                    Navigator.pop(context);
                   },
-                  child: Center(
-                    child: Container(
-                      width: 110,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF008080),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "Add",
-                          style: TextStyle(color: Colors.white, fontSize: 15.0),
-                        ),
-                      ),
-                    ),
+                  child: const Icon(
+                    Icons.cancel,
+                    size: 20.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 17.0,
+                  width: 5.0,
+                ),
+                const Text(
+                  "Add Your Work To-Do",
+                  style: TextStyle(
+                    color: Color(0xFF008080),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.0,
                   ),
                 ),
               ],
             ),
-          ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            // const Text("Add text"),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black38, width: 3.0),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextField(
+                controller: to_do_controller,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "eg: turn of the gas 🔥 ",
+                  hintStyle: TextStyle(fontSize: 15.0),
+                  contentPadding: EdgeInsets.fromLTRB(30, 0, 0, 0)
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            GestureDetector(
+              onTap: () async {
+                String id = randomAlphaNumeric(10);
+                Map<String, dynamic> userTodo = {
+                  "Work": to_do_controller.text,
+                  "Id": id,
+                  "Yes": false,
+                };
+                if (today) {
+                  await DatabaseMethods().addTodayWork(userTodo, id);
+                } else if (tomorrow) {
+                  await DatabaseMethods().addTomorrowWork(userTodo, id);
+                } else if (NextWeek) {
+                  await DatabaseMethods().addNextWeekWork(userTodo, id);
+                } else {
+                  // do nothing
+                  // ignore: avoid_print
+                  print("Nothing is done here");
+                }
+                to_do_controller.clear(); // Clear the text field
+                Navigator.pop(context); // Close the dialog
+              },
+              child: Center(
+                child: Container(
+                  width: 110,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xFF008080),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Add",
+                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 }
