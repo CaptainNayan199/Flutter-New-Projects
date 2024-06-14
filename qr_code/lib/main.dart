@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         //
-        // the application has a purple toolbar. Then, without quitting the app,
         // and then invoke "hot reload" (save your changes or press the "hot
         // the command line to start the app).
         //
