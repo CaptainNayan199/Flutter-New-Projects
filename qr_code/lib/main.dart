@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         //
         // and then invoke "hot reload" (save your changes or press the "hot
-        // the command line to start the app).
         //
         // Notice that the counter didn't reset back to zero; the application
         // state is not lost during the reload. To reset the state, use hot
