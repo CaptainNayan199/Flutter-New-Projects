@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         //
-        //        // state is not lost during the reload. To reset the state, use hot
         // restart instead.
         //
         // This works for code too, not just values: Most code changes can be
