@@ -7,7 +7,17 @@ class QRScanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(child: Container(
+              
+            ))
+          ],
+        ),
+      ),
     );
   }
 }
