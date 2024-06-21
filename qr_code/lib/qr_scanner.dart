@@ -9,11 +9,11 @@ class QRScanner extends StatelessWidget {
       appBar: AppBar(),
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Expanded(child: Container(
-              
+
             ),
             ),
           ],
