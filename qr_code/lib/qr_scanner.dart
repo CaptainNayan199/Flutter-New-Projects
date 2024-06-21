@@ -14,7 +14,8 @@ class QRScanner extends StatelessWidget {
           children: [
             Expanded(child: Container(
               
-            ))
+            ),
+            ),
           ],
         ),
       ),
