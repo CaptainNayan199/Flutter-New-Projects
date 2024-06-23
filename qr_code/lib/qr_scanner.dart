@@ -13,8 +13,8 @@ class QRScanner extends StatelessWidget {
         child: Column(
           children: [
             Expanded(child: Container(
-              // The container should be in the center with  some elevation.
-              
+              // The container should be in the center with  some elevation. Container
+
             ),
             ),
           ],
