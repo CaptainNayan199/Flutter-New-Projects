@@ -9,7 +9,16 @@ class QRScanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          "PLace the QR code in the desired section",
+          style: TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),
