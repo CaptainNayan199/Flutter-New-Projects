@@ -54,7 +54,14 @@ class QRScanner extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: Colors.amber,
+                alignment: Alignment.center,
+                child: Text(
+                  "Made for practice by Nayan",
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 14,
+                      letterSpacing: 1),
+                ),
               ),
             ),
           ],
