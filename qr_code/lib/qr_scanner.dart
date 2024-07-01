@@ -22,13 +22,18 @@ class QRScanner extends StatelessWidget {
                   Text(
                     "PLace the QR code in the desired section",
                     style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1
-                    ),
+                        color: Colors.black87,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1),
                   ),
-                  Text("Scanning will start automatically")
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Scanning will start automatically",
+                    style: TextStyle(color: Colors.black54, fontSize: 16),
+                  )
                 ],
               ),
             ),
