@@ -8,6 +8,7 @@ class QRScanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       appBar: AppBar(),
       body: Container(
         width: double.infinity,
@@ -15,8 +16,7 @@ class QRScanner extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Container(
-              ),
+              child: Container(),
             ),
             Expanded(
               flex: 4,
