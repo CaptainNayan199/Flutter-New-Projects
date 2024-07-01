@@ -16,13 +16,12 @@ class QRScanner extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Container(
-                child: Column(
-                  children: [
-                    Text("PLace the QR code in the desired section"),
-                    Text("Scanning will start automatically")
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("PLace the QR code in the desired section"),
+                  Text("Scanning will start automatically")
+                ],
               ),
             ),
             Expanded(
