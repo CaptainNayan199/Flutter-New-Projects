@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const bgColor = Color(0xffffafafa);
+
 class QRScanner extends StatelessWidget {
   const QRScanner({super.key});
 
@@ -14,7 +16,6 @@ class QRScanner extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                color: Colors.red,
               ),
             ),
             Expanded(
