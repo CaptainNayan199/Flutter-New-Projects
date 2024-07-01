@@ -11,7 +11,7 @@ class QRScanner extends StatelessWidget {
       backgroundColor: bgColor,
       appBar: AppBar(
         title: Text(
-          "PLace the QR code in the desired section",
+          "QR Scanner",
           style: TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class QRScanner extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "PLace the QR code in the desired section",
+                    "Place the QR code in the desired section",
                     style: TextStyle(
                         color: Colors.black87,
                         fontSize: 18,
