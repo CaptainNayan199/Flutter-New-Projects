@@ -18,6 +18,7 @@ class QRScanner extends StatelessWidget {
               ),
             ),
             Expanded(
+              flex: 4,
               child: Container(
                 color: Colors.green,
               ),
