@@ -29,6 +29,7 @@ class ResultScreen extends StatelessWidget {
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1),
+                  
             ),
             SizedBox(
               height: 10,
