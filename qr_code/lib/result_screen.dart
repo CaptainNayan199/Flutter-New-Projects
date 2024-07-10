@@ -41,6 +41,7 @@ class ResultScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            
             SizedBox(
               width: MediaQuery.of(context).size.width - 100,
               height: 48,
