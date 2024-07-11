@@ -44,7 +44,7 @@ class ResultScreen extends StatelessWidget {
             
             SizedBox(
               width: MediaQuery.of(context).size.width - 100,
-              height: 48,
+              height: 38,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
