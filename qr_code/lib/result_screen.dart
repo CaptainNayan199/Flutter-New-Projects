@@ -62,4 +62,3 @@ class ResultScreen extends StatelessWidget {
     );
   }
 }
-
